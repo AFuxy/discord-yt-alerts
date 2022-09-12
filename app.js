@@ -16,9 +16,10 @@ const port = process.env.PORT || 3000;
 //import youtube notification
 const notifier = require("yt-notifs");
 
+const YTIDArray = new Array();
+
 client.on("ready", () => {
     console.log("Watching " + config.CHANNEL_ID.length  + " Channels")
-    const YTIDArray = [];
     config.CHANNEL_ID.forEach(channel => {
         console.log("Name of channel: " + notifier.getChannelName(channel));
     });
@@ -56,6 +57,7 @@ notifier.events.on("newVid", (obj) => {
         YTIDArray.push(obj.vid.id)
         // client.channels.cache.get(config.SERVER_CHANNEL_ID).send(`**${data.channel.name}** just uploaded a new video - **${data.video.link}**`);
     }
+    console.log(YTIDArray);
 });
 
 notifier.subscribe(config.CHANNEL_ID);
