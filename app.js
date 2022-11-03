@@ -24,6 +24,12 @@ client.on("ready", () => {
         console.log("Name of channel: " + notifier.getChannelName(channel));
     });
     client.user.setPresence({ activities: [{ name: config.CHANNEL_ID.length  + " Channels", type: ActivityType.Watching }], status: 'online'});
+    const online = new EmbedBuilder()
+            .setTitle("The Bot Restarted!")
+            .setDescription("The bot restarted for some reason, maybe the admin might know why?")
+            .setAuthor({ name: client.user.username })
+            .setTimestamp()
+    client.channels.cache.get(config.SERVER_RESTART_CHANNEL_ID).send({embeds: [online]});
 });
 
 notifier.start(60);
